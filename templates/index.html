@@ -10,8 +10,8 @@
 <body class = "bg-stone-800">
 
     <header class="px-4 mx-8">
-        <section class="py-8 px-4 mt-4 flex flex-col items-center">
-            <p class="font-bold text-5xl w-auto py-2 text-purple-50 tracking-wide">Cek Tingkat Hoaks Berita Vaksin Covid-19</p>
+        <section class="py-8 px-4 mt-4 flex flex-col flex-wrap items-center">
+            <p class="font-bold text-5xl w-auto py-2 text-purple-50 tracking-wide text-center">Cek Tingkat Hoaks Berita Vaksin Covid-19</p>
             <p class="text-lg text-gray-300 py-4 w-3/5 text-center">Apakah berita yang kamu terima terdapat unsur hoaks di dalamnya? Hati-hati sebelum menyebar berita ke keluarga, teman, atau kolegamu</p>
         </section>
     </header>  
@@ -27,21 +27,22 @@
         </ul>
     </section>
      
-    <section class="flex items-center flex-wrap gap-10">
-        <div class="flex flex-col gap-2 mt-5 px-4 py-4">
+    <section class="flex flex-wrap mt-5 items-start justify-center px-14">
+        <div class="flex flex-col px-4 py-4 w-1/2">
             <p class="text-lg text-gray-300">Klasifikasi teks</p>
-            <form action="">
-                <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2 w-full" name="" id="" cols="60" rows="8" placeholder="Masukkan Teks" maxlength="144"></textarea>
-            </form>
-            <button class="bg-teal-400 px-8 py-2 w-fit rounded-sm self-end">Klasifikasi</button>
+            <form action="" class="mt-2">
+                <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2 w-full" name="" id="" rows="8" placeholder="Masukkan Teks" maxlength="144"></textarea>
+                <button class="font-bold bg-teal-400 px-8 py-3 mt-2 w-full rounded-sm">Klasifikasi</button>
+            </form>            
         </div>
     
-        <div class="flex flex-col mt-5 px-4 py-4">
-            <p class="text-lg text-gray-300 py-4">Klasifikasi teks</p>
-            <form action="">
-                <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2" name="" id="" cols="60" rows="8" placeholder="Masukkan Teks" maxlength="144"></textarea>
-            </form>
-            <button class="bg-teal-400 px-4 py-2">Klasifikasi</button>
+        <div class="flex px-4 py-4 w-1/2">
+            <div class="w-1/2">
+                <p class="text-lg text-gray-300 py-4 px-4">Persentase Hoaks</p>
+            </div>
+            <div class="w-1/2">
+                <p class="text-lg text-gray-300 py-4 px-4">Entitas Teks</p>
+            </div>
         </div>
     </section>
     
