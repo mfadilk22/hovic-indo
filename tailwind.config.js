@@ -5,6 +5,9 @@ module.exports = {
   "./static/src/**/*.js"
 ],
   theme: {
+    fontFamily: {
+      sans: ['Plus Jakarta Sans', 'sans-serif'],
+    }, 
     extend: {},
   },
   plugins: [],
