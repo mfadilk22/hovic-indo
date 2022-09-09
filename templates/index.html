@@ -9,84 +9,90 @@
 
 <body class = "bg-stone-800 box-border">
 
-    <header class="px-4 mx-8">
-        <section class="py-8 px-4 mt-4 flex flex-col flex-wrap items-center">
-            <p class="font-bold text-5xl w-auto py-2 text-purple-50 tracking-wide text-center">Cek Tingkat Hoaks Berita Vaksin Covid-19</p>
+    <header class="px-4">
+        <section class="py-2 px-4 mt-4 flex flex-col flex-wrap items-center">
+            <p class="font-bold text-5xl w-auto py-2 text-white tracking-wide text-center">Cek Tingkat Hoaks Berita Vaksin Covid-19</p>
             <p class="text-lg text-gray-300 py-4 w-3/5 text-center">Apakah berita yang kamu terima terdapat unsur hoaks di dalamnya? Hati-hati sebelum menyebar berita ke keluarga, teman, atau kolegamu</p>
         </section>
     </header>  
 
     <section class="border-b border-gray-600">
-        <ul class="flex flex-wrap font-medium text-center gap-10 justify-center" id="navTab">
+        <ul class="flex flex-wrap font-medium text-center gap-10 justify-center" id="navTab" data-tabs-toggle="#myTabContent" role="tablist">
             <li>
-                <button class="inline-block p-4 rounded-t-lg border-b-2 border-teal-400 text-teal-400" id="teks-tab" data-tabs-target="#teks" type="button" role="tab" aria-controls="profile" aria-selected="false">Input Teks</button>
+                <button class="inline-block p-4 rounded-t-lg border-b-2 border-teal-400 text-teal-400" id="teks-tab" data-tabs-target="#teks" type="button" data-tabs-target="#teks" type="button" role="tab" aria-controls="teks" aria-selected="false">Input Teks</button>
             </li>
             <li>
-                <button class="inline-block p-4 rounded-t-lg text-gray-300" id="teks-tab" data-tabs-target="#teks" type="button" role="tab" aria-controls="profile" aria-selected="false">Upload Dokumen</button>
+                <button class="inline-block p-4 rounded-t-lg text-gray-300 hover:bg-stone-700" id="dokumen-tab" data-tabs-target="#dokumen" type="button" data-tabs-target="#dokumen" type="button" role="tab" aria-controls="dokumen" aria-selected="false">Upload Dokumen</button>
             </li>
         </ul>
     </section>
      
-    <section class="flex flex-wrap mt-10 items-start justify-center px-14">
-        <div class="flex flex-col px-4 mt-2 w-1/2">
-            <p class="text-lg text-gray-300">Klasifikasi teks</p>
-            <form action="" class="mt-2 w-full">
-                <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2 w-full" name="" id="" rows="8" placeholder="Masukkan Teks" maxlength="144"></textarea>
-                <div class="flex justify-end">
-                    <button class="font-bold text-rose-400 px-8 py-3 mt-2 rounded-sm">Hapus</button>
-                    <button class="font-medium bg-teal-400 px-20 py-2 mt-2 rounded-md">Cek</button>
-                </div>                
-            </form>            
-        </div>
     
-        <div class="flex px-4 py-4 w-1/2 gap-4">
-            <div class="flex flex-col w-1/2 px-4 bg-rose-900 bg-opacity-30 border border-rose-300 h-64 rounded-lg">
-                <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
-                <p class="text-7xl font-bold text-rose-200 py-1 mt-2 ">76.87 <span class="text-base text-rose-200">%</span></p>
-                <p class="px-3 py-1 rounded-full border border-rose-900 bg-rose-100 text-rose-900 text-sm text-center w-fit font-bold items-end mt-2">Berbahaya</p>                
+    <div id = "myTabContent">
+        <section class="flex flex-wrap mt-5 items-start justify-center px-14 h-full" id="teks" role="tabpanel" aria-labelledby="teks-tab">
+            <div class="flex flex-col px-4 mt-2 w-1/2">
+                <p class="text-lg text-gray-300">Klasifikasi teks</p>
+                <form action="" class="mt-2 w-full">
+                    <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2 w-full text-white" name="" id="" rows="8" placeholder="Masukkan Teks" maxlength="144"></textarea>
+                    <div class="flex justify-end gap-2">
+                        <button class="font-bold text-rose-400 hover:underline px-8 py-3 mt-2 rounded-sm">Hapus</button>
+                        <button class="font-medium bg-teal-400 hover:bg-teal-500 hover:border-stone-50 px-20 py-2 mt-2 rounded-md">Cek</button>
+                    </div>                
+                </form>            
             </div>
+        
+            <div class="flex px-4 py-4 w-1/2 gap-4 h-full">
+                <div class="flex flex-col w-1/2 px-4 bg-rose-900 bg-opacity-30 border border-rose-300  rounded-lg">
+                    <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
+                    <p class="text-7xl font-bold text-rose-200 py-1 mt-2 leading-none">76.87 <span class="text-base text-rose-200">%</span></p>
+                    <p class="px-3 py-1 rounded-full border border-rose-900 bg-rose-100 text-rose-900 text-sm text-center w-fit font-bold items-end mt-2">Berbahaya</p>                
+                </div>
 
-            <div class="flex flex-col w-1/2 px-4 bg-cyan-900 bg-opacity-40 border-2 border-cyan-500 h-64 rounded-lg">
-                <p class="text-md text-gray-50 pt-4">Entitas dalam Teks</p>
+                <div class="flex flex-col w-1/2 px-4 bg-cyan-900 bg-opacity-40 border-2 border-cyan-500 h-64 rounded-lg">
+                    <p class="text-md text-gray-50 pt-4">Entitas dalam Teks</p>
 
-                <table class="mt-4 table-auto rounded-xl">
-                    <thead class="bg-cyan-900 rounded-t-lg">
-                        <tr class="text-base text-left text-stone-100">
-                            <th class="py-2 px-2">Kata</th>
-                            <th class="py-2 px-2">Entitas</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-cyan-900 bg-opacity-40">
-                        <tr>
-                            <td class="py-2 px-2">
-                                <p class="text-stone-50">Jakarta</p>
-                            </td>                            
-                            <td class="py-2 px-2">
-                                <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">LOKASI</p>
-                            </td>                            
-                        </tr>                        
-                        <tr>
-                            <td class="py-2 px-2">
-                                <p class="text-stone-50">Covid-19</p>
-                            </td>                            
-                            <td class="py-2 px-2">
-                                <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">PENYAKIT</p>
-                            </td>                            
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-2">
-                                <p class="text-stone-50">Masyarakat</p>
-                            </td>                            
-                            <td class="py-2 px-2">
-                                <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">ORANG</p>
-                            </td>                            
-                        </tr>
-                    </tbody>                    
-                </table>
+                    <table class="mt-4 table-auto rounded-xl">
+                        <thead class="bg-cyan-900 rounded-t-lg">
+                            <tr class="text-base text-left text-stone-100">
+                                <th class="py-2 px-2">Kata</th>
+                                <th class="py-2 px-2">Entitas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-cyan-900 bg-opacity-40">
+                            <tr>
+                                <td class="py-2 px-2">
+                                    <p class="text-stone-50">Jakarta</p>
+                                </td>                            
+                                <td class="py-2 px-2">
+                                    <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">LOKASI</p>
+                                </td>                            
+                            </tr>                        
+                            <tr>
+                                <td class="py-2 px-2">
+                                    <p class="text-stone-50">Covid-19</p>
+                                </td>                            
+                                <td class="py-2 px-2">
+                                    <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">PENYAKIT</p>
+                                </td>                            
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-2">
+                                    <p class="text-stone-50">Masyarakat</p>
+                                </td>                            
+                                <td class="py-2 px-2">
+                                    <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">ORANG</p>
+                                </td>                            
+                            </tr>
+                        </tbody>                    
+                    </table>
+                </div>
             </div>
-        </div>
+        </section>
 
-    </section>
+        <section class="flex flex-wrap mt-5 items-start justify-center px-14 h-full" id="teks" role="tabpanel" aria-labelledby="teks-tab">
+            <p class="font-medium text-3xl text-teal-300">HALAMAN UPLOAD OKUMEN</p>
+        </section>
+    </div>
     
 
 </body>
