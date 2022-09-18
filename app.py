@@ -29,6 +29,7 @@ app.config['UPLOAD_EXTENSIONS'] = ['.txt']
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
 
 model_path = 'model/'
+
 # load model
 model = tf.keras.models.load_model(model_path+"model_NN.h5")
 model_ner = spacy.load(model_path+"NER_3")
@@ -36,11 +37,9 @@ token = Tokenizer()
 with open(model_path+'token_NN.pickle', 'rb') as handle:
     token = pickle.load(handle)
 
-
-
 @app.route("/")
 def index():
-	return render_template('index.html')
+	return render_template(('index.html'), prediksi_teks = False)
 
 @app.route("/klasifikasi", methods=['GET', 'POST'])
 def klasifikasi_teks():

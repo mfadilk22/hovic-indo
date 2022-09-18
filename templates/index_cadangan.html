@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hovic</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+</head>
+
+<body class = "bg-stone-800 box-border">
+
+    <header class="px-4">
+        <section class="py-2 px-4 mt-4 flex flex-col flex-wrap items-center">
+            <a href="{{ url_for('index') }}" class="font-bold text-5xl w-auto py-2 text-white tracking-wide text-center">Cek Tingkat Hoaks Berita Vaksin Covid-19</a>
+            <p class="text-lg text-gray-300 py-4 w-3/5 text-center">Apakah berita yang kamu terima terdapat unsur hoaks di dalamnya? Hati-hati sebelum menyebar berita ke keluarga, teman, atau kolegamu</p>
+        </section>
+    </header>  
+
+    <section class="border-b border-gray-600">
+        <ul class="flex flex-wrap font-medium text-center gap-10 justify-center" id="navTab" data-tabs-toggle="#myTabContent" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a href="#teks-content" class="inline-block p-4 rounded-t-lg border-b-2 border-teal-400 text-teal-400 hover:bg-stone-700" id="teks-content-tab" data-tabs-target="#teks-content" data-bs-target="#teks-content" type="button" role="tab" aria-controls="teks-content" aria-selected="true" onclick="changeActiveTab(event, 'teks-content')">Input Teks</a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a href="#dokumen-content" class="inline-block p-4 rounded-t-lg text-gray-300 hover:bg-stone-700 active:border-b-2 active:border-teal-400 active:text-teal-400" id="dokumen-content-tab" data-tabs-target="#dokumen-content" type="button" data-bs-target="#dokumen-content" type="button" role="tab" aria-controls="dokumen-content" aria-selected="false" onclick="changeActiveTab(event, 'dokumen-content')">Upload Dokumen</a>
+            </li>
+        </ul>
+    </section>
+     
+    
+    <div id = "myTabContent">
+        <section class="flex flex-wrap mt-5 items-start justify-center px-14 h-full" id="teks-content" role="tabpanel" aria-labelledby="teks-content-tab">
+            <div class="flex flex-col px-4 mt-2 w-1/2">
+                <p class="text-lg text-gray-300">Klasifikasi teks</p>
+                <form action="{{ url_for('klasifikasi_teks') }}" method="POST" enctype="multipart/form-data" class="mt-2 w-full">
+                    <textarea class="bg-stone-700 rounded-lg placeholder-stone-400 px-4 py-2 w-full text-white" name="teks_vaksin" id="" rows="8" placeholder="Masukkan Teks" maxlength="144" required>{{ pesan }}</textarea>
+                    <div class="flex justify-end gap-2">
+                        <button class="font-bold text-rose-400 hover:underline px-8 py-3 mt-2 rounded-sm">Hapus</button>
+                        <button type="submit" value="Submit" class="font-medium bg-teal-400 hover:bg-teal-500 hover:border-stone-50 px-20 py-2 mt-2 rounded-md">Cek</button>
+                    </div>                
+                </form>            
+            </div>
+        
+            <div class="flex px-4 py-4 w-1/2 gap-4 h-full">
+                {% if prediksi_teks == False %}
+                    <div class="flex flex-col w-1/2 px-4 bg-stone-800 border border-stone-300  rounded-lg">
+                        <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
+                        <p class="text-7xl font-bold text-rose-200 py-1 mt-2 leading-none"> <span class="text-base text-rose-200"></span></p>                                       
+                    </div>
+
+                {% elif prediksi_teks > 65 and prediksi_teks <=100 %}
+                    <div class="flex flex-col w-1/2 px-4 bg-rose-900 bg-opacity-30 border border-rose-300  rounded-lg">
+                        <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
+                        <p class="text-7xl font-bold text-rose-200 py-1 mt-2 leading-none">{{ prediksi_teks }} <span class="text-base text-rose-200">%</span></p>
+                        <p class="px-3 py-1 rounded-full border border-rose-900 bg-rose-100 text-rose-900 text-sm text-center w-fit font-bold items-end mt-2">Berbahaya</p>                
+                    </div>
+                {% elif prediksi_teks > 50 and prediksi_teks <= 65 %}
+                    <div class="flex flex-col w-1/2 px-4 bg-amber-900 bg-opacity-30 border border-amber-300  rounded-lg">
+                        <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
+                        <p class="text-7xl font-bold text-amber-200 py-1 mt-2 leading-none">{{ prediksi_teks }} <span class="text-base text-amber-200">%</span></p>
+                        <p class="px-3 py-1 rounded-full border border-amber-900 bg-amber-100 text-amber-900 text-sm text-center w-fit font-bold items-end mt-2">Riskan</p>                
+                    </div>
+                {% else %}
+                    <div class="flex flex-col w-1/2 px-4 bg-green-900 bg-opacity-30 border border-lime-300  rounded-lg">
+                        <p class="text-md text-emerald-50 pt-4">Persentase Hoaks</p>
+                        <p class="text-7xl font-bold text-lime-300 py-1 mt-2 leading-none">{{ prediksi_teks }} <span class="text-base text-lime-300">%</span></p>
+                        <p class="px-3 py-1 rounded-full border border-green-900 bg-green-100 text-green-900 text-sm text-center w-fit font-bold items-end mt-2">Aman</p>                
+                    </div>
+                 {% endif %}
+
+                <div class="flex flex-col w-1/2 px-4 bg-cyan-900 bg-opacity-40 border-2 border-cyan-500 h-64 rounded-lg ">
+                    <p class="text-md text-gray-50 pt-4">Entitas dalam Teks</p>
+                    <div class="overflow-y-auto mt-4">
+                        <table class="table-auto rounded-xl">
+                            <thead class="bg-cyan-900 rounded-t-lg">
+                                <tr class="text-base text-left text-stone-100">
+                                    <th class="py-2 px-2">Kata</th>
+                                    <th class="py-2 px-2">Entitas</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-cyan-900 bg-opacity-40 overflow-auto">
+                                {% for item in ner %}
+                                    <tr>
+                                        <td class="py-2 px-2">
+                                            <span class="text-stone-50 text-small">{{ item[0] }}</span>
+                                        </td>
+                                        <td class="py-2 px-2">
+                                            <span class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3"">{{ item[1] }}</span>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                <!-- <tr>
+                                    <td class="py-2 px-2">
+                                        <p class="text-stone-50">Jakarta</p>
+                                    </td>                            
+                                    <td class="py-2 px-2">
+                                        <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">LOKASI</p>
+                                    </td>                            
+                                </tr>                        
+                                <tr>
+                                    <td class="py-2 px-2">
+                                        <p class="text-stone-50">Covid-19</p>
+                                    </td>                            
+                                    <td class="py-2 px-2">
+                                        <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">PENYAKIT</p>
+                                    </td>                            
+                                </tr>
+                                <tr>
+                                    <td class="py-2 px-2">
+                                        <p class="text-stone-50">Masyarakat</p>
+                                    </td>                            
+                                    <td class="py-2 px-2">
+                                        <p class="w-fit rounded-full bg-teal-200 text-stone-800 text-xs font-bold py-1 px-3">ORANG</p>
+                                    </td>                            
+                                </tr> -->
+                            </tbody>                    
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="hidden" id="dokumen-content" role="tabpanel" aria-labelledby="dokumen-content-tab">
+            <p class="font-medium text-3xl text-teal-300">HALAMAN UPLOAD OKUMEN</p>
+        </section>
+    </div>    
+
+    <script type="text/javascript" src="{{ url_for('static', filename='script/script.js') }}"></script>
+</body>
+
+</html>
