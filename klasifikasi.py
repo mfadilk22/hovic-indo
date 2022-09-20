@@ -9,7 +9,7 @@ import pickle
 
 model_path = 'model/'
 # load model
-model = tf.keras.models.load_model(model_path+"model_FINAL.h5")
+model = tf.keras.models.load_model(model_path+"model_NN.h5")
 model_ner = spacy.load(model_path+"NER_3")
 token = Tokenizer()
 with open(model_path+'token_NN.pickle', 'rb') as handle:
